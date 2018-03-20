@@ -8,4 +8,4 @@ jdk:
   - oraclejdk8
 
 script:
-  - sbt -jvm-opts travis/jvmopts ++$TRAVIS_SCALA_VERSION compile:
+  - sbt ++$TRAVIS_SCALA_VERSION compile
