@@ -64,6 +64,6 @@ val publishingSettings = Seq(
   useGpg := false,
   usePgpKeyHex("F3DFAA7AC6C7EF24"),
   pgpPublicRing := file("project/.gnupg/pubring.gpg"),
-  pgpSecretRing := file("project/.gnupg/secring.gpg")
-  //pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
+  pgpSecretRing := file("project/.gnupg/secring.gpg"),
+  pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
 )
