@@ -54,5 +54,16 @@ val publishingSettings = Seq(
       email = "info@cap3.de",
       url   = url("http://www.cap3.de/")
     )
-  )
+  ),
+  credentials += Credentials(
+    "Sonatype Nexus Repository Manager",
+    "oss.sonatype.org",
+    sys.env.getOrElse("SONATYPE_USER", ""),
+    sys.env.getOrElse("SONATYPE_PASS", "")
+  ),
+  useGpg := false,
+  usePgpKeyHex("F3DFAA7AC6C7EF24"),
+  pgpPublicRing := file("project/.gnupg/pubring.gpg"),
+  pgpSecretRing := file("project/.gnupg/secring.gpg")
+  //pgpPassphrase := sys.env.get("PGP_PASS").map(_.toArray)
 )
