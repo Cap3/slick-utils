@@ -3,7 +3,7 @@ import Dependencies._
 val scalaVersion_2_11 = "2.11.11"
 val scalaVersion_2_12 = "2.12.4"
 
-val slickUtilsVersion = "1.0-SMAPSHOT"
+val slickUtilsVersion = "0.1-SNAPSHOT"
 
 lazy val root = (project in file(".")).
   settings(
@@ -24,6 +24,35 @@ lazy val root = (project in file(".")).
       "com.typesafe.play" %% "play-slick" % "3.0.1",
       "org.flywaydb" %% "flyway-play" % "4.0.0",
       "com.github.tminglei" %% "slick-pg" % "0.15.4",
-      "com.github.tminglei" %% "slick-pg_play-json" % "0.15.4",
+      "com.github.tminglei" %% "slick-pg_play-json" % "0.15.4"
+    ))
+  .settings(publishingSettings: _*)
+
+val publishingSettings = Seq(
+  pomIncludeRepository := { _ => false },
+  publishMavenStyle := true,
+  licenses := Seq("MIT" -> url("http://opensource.org/licenses/MIT")),
+  homepage := Some(url("https://github.com/Cap3/slick-utils")),
+  publishArtifact in Test := false,
+  publishTo := {
+    val nexus = "https://oss.sonatype.org/"
+    if (isSnapshot.value)
+      Some("snapshots" at nexus + "content/repositories/snapshots")
+    else
+      Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+  },
+  scmInfo := Some(
+    ScmInfo(
+      url("https://github.com/Cap3/slick-utils"),
+      "scm:git@github.com/Cap3/slick-utils.git"
+    )
+  ),
+  developers := List(
+    Developer(
+      id    = "cap3",
+      name  = "Cap3 GmbH",
+      email = "info@cap3.de",
+      url   = url("http://www.cap3.de/")
     )
   )
+)
