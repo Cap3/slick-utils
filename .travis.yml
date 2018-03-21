@@ -10,5 +10,9 @@ jdk:
 script:
   - sbt ++$TRAVIS_SCALA_VERSION clean compile package
 
-after_success:
-- ! '[[ $TRAVIS_BRANCH == master ]] && { sbt +publishSigned; };'
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: sbt ++$TRAVIS_SCALA_VERSION publishSigned
+  on:
+    branch: master
