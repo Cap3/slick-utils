@@ -11,4 +11,4 @@ script:
   - sbt ++$TRAVIS_SCALA_VERSION clean compile package
 
 after_success:
-- ! '[[ $TRAVIS_BRANCH == "master" ]] && { sbt +publish; };'
+- ! '[[ $TRAVIS_BRANCH == "master" ]] && { sbt +publishSigned; };'
